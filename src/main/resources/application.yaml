@@ -1,0 +1,8 @@
+camunda:
+  bpm:
+    admin-user:
+      id: avh
+      password: avh
+    filter:
+      create: MyTaskFilter
+    history-level: FULL
