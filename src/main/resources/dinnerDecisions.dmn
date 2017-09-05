@@ -11,13 +11,15 @@
 </inputExpression>
       </input>
       <output id="output1" label="Dish" name="desiredDish" typeRef="string" />
+      <output id="OutputClause_1f75upz" label="Grill" name="prepareGrill" typeRef="boolean" />
       <rule id="row-129502239-1">
-        <description></description>
         <inputEntry id="UnaryTests_0e47zyl">        <text><![CDATA["Fall"]]></text>
 </inputEntry>
         <inputEntry id="UnaryTests_1132erh">        <text><![CDATA[<= 8]]></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_0wv4x30">        <text><![CDATA["Spareribs"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_1t1378w">        <text>true</text>
 </outputEntry>
       </rule>
       <rule id="row-129502239-2">
@@ -27,13 +29,17 @@
 </inputEntry>
         <outputEntry id="LiteralExpression_0ysj59c">        <text><![CDATA["Roastbeef"]]></text>
 </outputEntry>
+        <outputEntry id="LiteralExpression_0rft1g4">        <text>true</text>
+</outputEntry>
       </rule>
       <rule id="row-129502239-3">
         <inputEntry id="UnaryTests_1nu2fxo">        <text><![CDATA["Spring"]]></text>
 </inputEntry>
         <inputEntry id="UnaryTests_1b4mcpz">        <text><![CDATA[<= 4]]></text>
 </inputEntry>
-        <outputEntry id="LiteralExpression_1osqv9r">        <text><![CDATA["Dry Aged Gourmet Steak"]]></text>
+        <outputEntry id="LiteralExpression_1osqv9r">        <text><![CDATA["Pizza"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_1b5rae8">        <text>false</text>
 </outputEntry>
       </rule>
       <rule id="row-129502239-4">
@@ -44,14 +50,18 @@
 </inputEntry>
         <outputEntry id="LiteralExpression_11v4xrs">        <text><![CDATA["Steak"]]></text>
 </outputEntry>
+        <outputEntry id="LiteralExpression_1wrfjsv">        <text>true</text>
+</outputEntry>
       </rule>
       <rule id="row-129502239-5">
-        <description>Less effort</description>
+        <description>Less effort / Eintopf</description>
         <inputEntry id="UnaryTests_0p7gr7e">        <text><![CDATA["Fall","Winter","Spring"]]></text>
 </inputEntry>
         <inputEntry id="UnaryTests_0zebpmx">        <text><![CDATA[> 8]]></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_0maai06">        <text><![CDATA["Stew"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_0w6wrl9">        <text>false</text>
 </outputEntry>
       </rule>
       <rule id="row-129502239-6">
@@ -61,6 +71,8 @@
         <inputEntry id="UnaryTests_0q3acue">        <text></text>
 </inputEntry>
         <outputEntry id="LiteralExpression_0ewtv5x">        <text><![CDATA["Light Salad and nice Steak"]]></text>
+</outputEntry>
+        <outputEntry id="LiteralExpression_1pvq9b5">        <text>false</text>
 </outputEntry>
       </rule>
     </decisionTable>
