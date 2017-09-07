@@ -1,15 +1,12 @@
 package com.example.camunda.camundademo.delegates;
 
 import org.camunda.bpm.engine.RuntimeService;
-import org.camunda.bpm.engine.delegate.BpmnError;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.camunda.bpm.engine.variable.VariableMap;
-import org.camunda.bpm.engine.variable.Variables;
-import org.camunda.bpm.model.dmn.instance.Variable;
+import org.camunda.bpm.engine.runtime.MessageCorrelationResult;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import java.util.Random;
 
 /**
  * Created by Andy on 05.09.2017.
@@ -17,25 +14,16 @@ import java.util.Random;
 @Service("delegateSendOrder")
 public class DelegateSendOrder implements JavaDelegate {
 
+    private Logger logger = LoggerFactory.getLogger(DelegateSendOrder.class);
+
     @Override
-    public void execute(DelegateExecution delegateExecution) throws Exception {
-        System.out.println("Send order...");
-        Random random = new Random();
-        int max = 10;
-        int min = 1;
-        int randomNumber = random.nextInt(max - min + 1) + min;
+    public void execute(DelegateExecution execution) throws Exception {
+        logger.info("Try to send order to customer");
+        RuntimeService runtimeService = execution.getProcessEngineServices().getRuntimeService();
+        String orderId = (String) execution.getVariable("orderId");
 
-        if (randomNumber % 3 == 3) {
-            throw new BpmnError("Error_OnlineOrderNotPossible");
-        } else {
-            RuntimeService runtimeService = delegateExecution.getProcessEngineServices().getRuntimeService();
-
-            String businessKey = "BK-" + delegateExecution.getProcessInstanceId();
-            VariableMap variablesForNewInstance = Variables.createVariables()
-                    .putValue("desiredDish", delegateExecution.getVariable("desiredDish"))
-                    .putValue("OrderNo", businessKey);
-            runtimeService.correlateMessage("Message_order", businessKey, variablesForNewInstance);
-        }
-
+        // inform the instance, which has ordered the meal
+        MessageCorrelationResult messageCorrelationResult = runtimeService.createMessageCorrelation("MessageOrderedMeal")
+                .processInstanceVariableEquals("orderId", orderId).correlateWithResult();
     }
 }
