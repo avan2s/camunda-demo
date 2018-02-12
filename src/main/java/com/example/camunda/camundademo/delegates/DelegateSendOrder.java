@@ -18,7 +18,7 @@ public class DelegateSendOrder implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-        logger.info("Try to send order to customer");
+        logger.info("Send order to customer");
         RuntimeService runtimeService = execution.getProcessEngineServices().getRuntimeService();
         String orderId = (String) execution.getVariable("orderId");
 

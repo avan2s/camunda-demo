@@ -17,5 +17,10 @@ public class DelegateLogTime implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
         LOGGER.info(LocalTime.now().format(DateTimeFormatter.ISO_LOCAL_TIME));
+        System.out.println("VARIABLES:\n");
+        System.out.println(execution.getVariables());
+        System.out.println("\n\nLOCAL VARIABLES:\n");
+        System.out.println(execution.getVariableNamesLocal());
+
     }
 }
